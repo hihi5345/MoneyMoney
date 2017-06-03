@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation = "horizontal"
-            android:checkedButton="@+id/income"
+            android:checkedButton="@+id/outgoing"
             >
             <RadioButton
                 android:id="@+id/income"
@@ -68,8 +68,9 @@
             android:numeric="integer"
             android:background="#FFFFFF"
             android:hint=" 수입을 입력하세요."
-            android:focusable="true"
-            android:focusableInTouchMode="true"/>
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            />
 
         <EditText
             android:id="@+id/edit_outgoing"
@@ -78,8 +79,8 @@
             android:numeric="integer"
             android:background="#FFFFFF"
             android:hint=" 지출을 입력하세요."
-            android:focusable="false"
-            android:focusableInTouchMode="false"/>
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
 
         <Button
             android:id="@+id/btn_go"

@@ -8,14 +8,14 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class Go extends Activity implements RadioGroup.OnCheckedChangeListener{
+public class Go2 extends Activity implements RadioGroup.OnCheckedChangeListener{
     EditText editIncome;
     EditText editOutgoing;
     RadioGroup group;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_go);
+        setContentView(R.layout.activity_go2);
         group = (RadioGroup)findViewById(R.id.select);
         group.setOnCheckedChangeListener(this);
         final DBLogin dbLogin = new DBLogin(this);
@@ -23,7 +23,6 @@ public class Go extends Activity implements RadioGroup.OnCheckedChangeListener{
         TextView money_next = (TextView) findViewById(R.id.money_next);
         name_next.setText(dbLogin.getName());
         money_next.setText(Integer.toString(dbLogin.getMoney()));
-
     }
     public void OnClick(View view){
         final DBLogin dbLogin = new DBLogin(this);
@@ -41,8 +40,6 @@ public class Go extends Activity implements RadioGroup.OnCheckedChangeListener{
         startActivity(intent);
         finish();
     }
-
-
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
         if(radioGroup == group){
