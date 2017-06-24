@@ -11,7 +11,7 @@
         android:layout_gravity = "center"
         android:textColor="#FFFFFF"
         android:textSize="50sp"
-        android:text="내역 확인"
+        android:text="지출 확인"
         />
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical">
@@ -69,20 +69,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dip"
+            android:layout_margin="10dip"
             android:gravity="center">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                android:text = "오늘 : "/>
+                android:text = "Now 수입 : "/>
             <TextView
-                android:id="@+id/money_today"
+                android:id="@+id/income_Now"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:textSize="40sp"
+                android:textSize="20sp"
                 android:textColor="#FFFFFF"
                 android:text = ""
                 />
@@ -90,19 +90,104 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dip"
             android:gravity="center">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                android:text = "어제 : "/>
+                android:text = "Now 지출 : "/>
             <TextView
-                android:id="@+id/money_yesterday"
+                android:id="@+id/outgoing_Now"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:textSize="40sp"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:text = ""
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:text = "수입 - 지출(Now) : "/>
+            <TextView
+                android:id="@+id/income_minus_outgoing_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:text = ""
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:text = "Before 수입 : "/>
+            <TextView
+                android:id="@+id/income_Before"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:text = ""
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:text = "Before 지출 : "/>
+            <TextView
+                android:id="@+id/outgoing_Before"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:text = ""
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:text = "수입 - 지출(Before) : "/>
+            <TextView
+                android:id="@+id/income_minus_outgoing_before"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="20sp"
                 android:textColor="#FFFFFF"
                 android:text = ""
                 />
@@ -113,7 +198,6 @@
         android:layout_width="200dp"
         android:layout_height="80dp"
         android:layout_gravity="center"
-        android:layout_margin="20dip"
         android:onClick="OnClick"
         android:text=" 메인 화면 " />
 </LinearLayout>

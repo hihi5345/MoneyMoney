@@ -62,7 +62,7 @@ public class Go extends Activity implements RadioGroup.OnCheckedChangeListener{
         startActivity(intent);
         finish();
     }
-    public void OnCheck(View view){
+    public void OnOutgoing(View view){
         Intent intent = new Intent(this,Check.class);
         startActivity(intent);
         finish();

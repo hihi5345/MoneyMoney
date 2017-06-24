@@ -118,7 +118,360 @@ public class DBHelper {
                         + "\n";
             }
         }
-
         return result;
+    }
+    public String get_income_now(int mode) throws ParseException {
+        int result = 0;
+        if(mode == 1){
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            String formatted = formatter.format(cal.getTime());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                if (formatted.equals(cursor.getString(1))) {
+                    if(cursor.getString(2).equals("수입")) {
+                        result += cursor.getInt(3);
+                    }
+                }
+            }
+        }else if(mode ==2){
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 7);
+                if (date1.compareTo(date2) >= 0) {
+                    if(cursor.getString(2).equals("수입")) {
+                        result += cursor.getInt(3);
+                    }
+                }
+            }
+        }else{
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 30);
+                if (date1.compareTo(date2) >= 0) {
+                    if(cursor.getString(2).equals("수입")) {
+                        result += cursor.getInt(3);
+                    }
+                }
+            }
+        }
+        return Integer.toString(result);
+    }
+    public String get_income_before(int mode) throws ParseException {
+        int result = 0;
+        if(mode == 1){
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 1);
+                if (date1.compareTo(date2) == 0) {
+                    if(cursor.getString(2).equals("수입")) {
+                        result += cursor.getInt(3);
+                    }
+                }
+            }
+        }else if(mode == 2){
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                java.text.SimpleDateFormat format3 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date3 = format3.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 14);
+                date3.setDate(date2.getDate() - 7);
+                if (date1.compareTo(date2) >= 0 && date1.compareTo(date3) < 0) {
+                    if(cursor.getString(2).equals("수입")) {
+                        result += cursor.getInt(3);
+                    }
+                }
+            }
+        }else{
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                java.text.SimpleDateFormat format3 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date3 = format3.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 60);
+                date3.setDate(date2.getDate() - 30);
+                if (date1.compareTo(date2) >= 0 && date1.compareTo(date3) < 0) {
+                    if(cursor.getString(2).equals("수입")) {
+                        result += cursor.getInt(3);
+                    }
+                }
+            }
+        }
+        return Integer.toString(result);
+    }
+    public String get_now(int mode) throws ParseException {
+        int result = 0;
+        if(mode == 1){
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            String formatted = formatter.format(cal.getTime());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                if (formatted.equals(cursor.getString(1))) {
+                    if(cursor.getString(2).equals("지출")) {
+                        result += cursor.getInt(3);
+                    }
+                }
+            }
+        }else if(mode ==2){
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 7);
+                if (date1.compareTo(date2) >= 0) {
+                    if(cursor.getString(2).equals("지출")) {
+                        result += cursor.getInt(3);
+                    }
+                }
+            }
+        }else{
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 30);
+                if (date1.compareTo(date2) >= 0) {
+                    if(cursor.getString(2).equals("지출")) {
+                        result += cursor.getInt(3);
+                    }
+                }
+            }
+        }
+        return Integer.toString(result);
+    }
+    public String get_before(int mode) throws ParseException {
+        int result = 0;
+        if(mode == 1){
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 1);
+                if (date1.compareTo(date2) == 0) {
+                    if(cursor.getString(2).equals("지출")) {
+                        result += cursor.getInt(3);
+                    }
+                }
+            }
+        }else if(mode == 2){
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                java.text.SimpleDateFormat format3 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date3 = format3.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 14);
+                date3.setDate(date2.getDate() - 7);
+                if (date1.compareTo(date2) >= 0 && date1.compareTo(date3) < 0) {
+                    if(cursor.getString(2).equals("지출")) {
+                        result += cursor.getInt(3);
+                    }
+                }
+            }
+        }else{
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                java.text.SimpleDateFormat format3 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date3 = format3.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 60);
+                date3.setDate(date2.getDate() - 30);
+                if (date1.compareTo(date2) >= 0 && date1.compareTo(date3) < 0) {
+                    if(cursor.getString(2).equals("지출")) {
+                        result += cursor.getInt(3);
+                    }
+                }
+            }
+        }
+        return Integer.toString(result);
+    }
+    public String get_min_now(int mode) throws ParseException {
+        int result = 0;
+        if(mode == 1){
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            String formatted = formatter.format(cal.getTime());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                if (formatted.equals(cursor.getString(1))) {
+                    if(cursor.getString(2).equals("수입")){
+                        result += cursor.getInt(3);
+                    }else if(cursor.getString(2).equals("지출")) {
+                        result -= cursor.getInt(3);
+                    }
+                }
+            }
+        }else if(mode ==2){
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 7);
+                if (date1.compareTo(date2) >= 0) {
+                    if(cursor.getString(2).equals("수입")){
+                        result += cursor.getInt(3);
+                    }else if(cursor.getString(2).equals("지출")) {
+                        result -= cursor.getInt(3);
+                    }
+                }
+            }
+        }else{
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 30);
+                if (date1.compareTo(date2) >= 0) {
+                    if(cursor.getString(2).equals("수입")){
+                        result += cursor.getInt(3);
+                    }else if(cursor.getString(2).equals("지출")) {
+                        result -= cursor.getInt(3);
+                    }
+                }
+            }
+        }
+        return Integer.toString(result);
+    }
+    public String get_min_before(int mode) throws ParseException {
+        int result = 0;
+        if(mode == 1){
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 1);
+                if (date1.compareTo(date2) == 0) {
+                    if(cursor.getString(2).equals("수입")){
+                        result += cursor.getInt(3);
+                    }else if(cursor.getString(2).equals("지출")) {
+                        result -= cursor.getInt(3);
+                    }
+                }
+            }
+        }else if(mode == 2){
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                java.text.SimpleDateFormat format3 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date3 = format3.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 14);
+                date3.setDate(date2.getDate() - 7);
+                if (date1.compareTo(date2) >= 0 && date1.compareTo(date3) < 0) {
+                    if(cursor.getString(2).equals("수입")){
+                        result += cursor.getInt(3);
+                    }else if(cursor.getString(2).equals("지출")) {
+                        result -= cursor.getInt(3);
+                    }
+                }
+            }
+        }else{
+            Calendar cal = Calendar.getInstance();
+            DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            formatter.setTimeZone(cal.getTimeZone());
+            Cursor cursor = db.rawQuery("SELECT *  FROM LIST", null);
+            while (cursor.moveToNext()) {
+                java.text.SimpleDateFormat format1 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date1 = format1.parse(cursor.getString(1));
+                java.text.SimpleDateFormat format2 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date2 = format2.parse(formatter.format(cal.getTime()));
+                java.text.SimpleDateFormat format3 = new java.text.SimpleDateFormat("yyyy.MM.dd.");
+                java.util.Date date3 = format3.parse(formatter.format(cal.getTime()));
+                date2.setDate(date2.getDate() - 60);
+                date3.setDate(date2.getDate() - 30);
+                if (date1.compareTo(date2) >= 0 && date1.compareTo(date3) < 0) {
+                    if(cursor.getString(2).equals("수입")){
+                        result += cursor.getInt(3);
+                    }else if(cursor.getString(2).equals("지출")) {
+                        result -= cursor.getInt(3);
+                    }
+                }
+            }
+        }
+        return Integer.toString(result);
     }
 }
